@@ -39,6 +39,7 @@
                 template: `
                     <form @submit.prevent="handleSubmit">
                         <h1> {{ title }} </h1>
+                        <p v-for="str in inputs" key="">{{ str }}</p>
                         <custom-input v-model="email" :label="emailLabel" />
                         <custom-input v-model="password" :label="passwordLabel" /> 
                         <button>Log in</button>
@@ -48,10 +49,15 @@
                 data() {
                     return {
                         title: 'Login Form',
-                        email: 'fdf',
-                        password: 'fdfd',
+                        inputs: [
+                            'email',
+                            'password',
+                            'name'
+                        ],
+                        email: '',
+                        password: '',
                         emailLabel: 'Email',
-                        passwordLabel: 'Password'
+                        passwordLabel: 'Password',
                     }
                 },
                 methods: {
@@ -64,7 +70,7 @@
                 template: `
                     <label>
                         {{ label }}
-                        <input type="text" v-model="inputValue" />
+                        <input type="text" v-model="inputValue" >
                     </label>
                 `,
                 props: ['label', 'modelValue'],
@@ -73,8 +79,8 @@
                         get() {
                             return this.modelValue
                         },
-                        set() {
-
+                        set(value) {
+                            this.$emit('update:modelValue', value)
                         }
                     }
                 },
