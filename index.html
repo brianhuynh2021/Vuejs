@@ -39,12 +39,14 @@
                 template: `
                     <form @submit.prevent="handleSubmit">
                         <h1> {{ title }} </h1>
+
                         <custom-input 
                             v-for="(input, i) in inputs"
                             :key="i"
                             v-model="input.value" 
                             :label="input.label"
                             :type="input.type" />
+
                         <button>Log in</button>
                     </form>
                 `,
@@ -63,6 +65,7 @@
                                 value: '',
                                 type: 'password'
                             }
+
                         ],
                         email: '',
                         password: '',
@@ -80,7 +83,9 @@
                 template: `
                     <label>
                         {{ label }}
+
                         <input :type="type" v-model="inputValue" >
+
                     </label>
                 `,
                 props: ['label', 'type', 'modelValue'],
