@@ -80,7 +80,9 @@
                 template: `
                     <label>
                         {{ label }}
+
                         <input :type="type" v-model="inputValue" >
+
                     </label>
                 `,
                 props: ['label', 'type', 'modelValue'],
