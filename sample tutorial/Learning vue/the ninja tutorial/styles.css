@@ -1,0 +1,35 @@
+.box {
+    padding: 100px 0;
+    width: 400px;
+    text-align: center;
+    background: #f6e8e8;
+    margin: 20px;
+    display: inline-block;
+}
+
+body {
+    background-color: aliceblue;
+    max-width: 960px;
+    margin: 20px auto;
+}
+
+p, h3, ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
+    background: #f6e8e8;
+    margin: 20px auto;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+li.fav {
+    background: #f7b3d7;
+    color: #f6e8e8;
+}
