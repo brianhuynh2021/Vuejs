@@ -2,9 +2,13 @@
   <!-- <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   <h1>{{ title }}</h1>
+  <p>Welcome...</p>
   <input type="text" ref="name">
   <button @click="handleClick">click me</button>
-  <Modal />
+  <div v-if="showModal">
+    <Modal :header="header" :text="text" ok=123 theme="sale" @close="toggleModal"/>
+  </div>
+  <button @click="toggleModal">open modal</button>
 </template>
 
 <script>
@@ -16,7 +20,10 @@ export default {
   components: { Modal },
   data () {
     return {
-      title: 'My first Vue App fdf:)'
+      title: 'My first Vue App fdf:)',
+      header: 'Sign up for giveaway!',
+      text: 'Hello world',
+      showModal: false
     }
   },
   methods: {
@@ -24,6 +31,9 @@ export default {
       console.log(this.$refs.name)
       this.$refs.name.classList.add('active')
       this.$refs.name.focus()
+    },
+    toggleModal() {
+        this.showModal = !this.showModal
     }
   }
   // components: {
@@ -32,7 +42,7 @@ export default {
 }
 </script>
 
-<style>
+<style >
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
