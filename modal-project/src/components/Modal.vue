@@ -5,6 +5,9 @@
             <!-- <h1>{{ header }} - {{ ok }}</h1>
             <p> {{ text }}</p> -->
             <slot></slot>
+            <div class="actions">
+                <slot name="links"></slot>
+            </div>
         </div>
     </div>
 </template>
@@ -53,4 +56,28 @@
     .modal.sale h1 {
         color: white;
     }
+    
+    .modal .actions {
+        text-align: center;
+        margin: 30px 0px 10px 0px;
+    }
+
+    .modal .actions a {
+        color: #75d144;
+        padding: 8px;
+        border: 1px solid #eee;
+        border-radius: 4px;
+        text-decoration: none;
+        margin: 10px;
+    }
+
+    .modal .sale .actions {
+        color: white;
+    }
+
+    .modal .sale .actions a {
+        color: #eee;
+    }
+
+
 </style>
