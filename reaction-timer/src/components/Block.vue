@@ -1,14 +1,29 @@
 <template>
-    <div class="block">click me</div>
+    <div class="block" v-if="showBlock">click me</div>
 </template>
 
 <script>
     export default {
-        props : ['deplay']
+        props : ['deplay'],
+        data() {
+           return {
+                showBlock: false
+           } 
+        },
+        mounted() {
+            console.log('component mounted')
+            setTimeout(() => {
+                this.showBlock=true
+                console.log(this.delay)
+            }, this.deplay)
+        },
+        updated() {
+            console.log('compnent updated')
+        }
     }
 </script>
 
-<style> 
+<style>  
     .block {
         width: 400px;
         border-radius: 20px;
