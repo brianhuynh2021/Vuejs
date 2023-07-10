@@ -4,7 +4,7 @@
 
 <script>
     export default {
-        props : ['deplay'],
+        props : ['delay'],
         data() {
            return {
                 showBlock: false,
@@ -18,7 +18,7 @@
                 this.showBlock=true
                 this.startTimer()
                 // console.log(this.delay)
-            }, this.deplay)
+            }, this.delay)
         },
         methods: {
             startTimer() {
@@ -28,7 +28,7 @@
             },
             stopTimer() {
                 clearInterval(this.timer)
-                console.log(this.reactionTime)
+                this.$emit('end', this.reactionTime)
             }
         }
         // updated() {
