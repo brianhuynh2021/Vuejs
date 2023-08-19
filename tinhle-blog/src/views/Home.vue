@@ -11,18 +11,26 @@
     <h2>Reactive</h2>
     <p>{{  tinhLeTwo.name }} - {{ tinhLeTwo.age }} - {{ nameTwo }}</p>
     <button @click="updateTinhLeTwo">Update TinhLe two</button>
-    <!-- <p>My name is {{ name }} and my age is {{ age }}</p>
+    <p>My name is {{ name }} and my age is {{ age }}</p>
     <button @click="handleClick">click me</button>
     <button @click="age++">Add 1 to age</button>
-    <input type="text" v-model="name"> -->
+    <!-- <input type="text" v-model="name"> -->
     <br />
-    <PostList :posts="posts" />
+
+    <div v-if="error">{{ error }}</div>
+    <div v-if="posts.length">
+      <PostList v-if="showPosts" :posts="posts" />
+    </div>
+    <div v-else>Loading...</div>
+    <button @click="showPosts = !showPosts">toggle posts</button>
+    <button @click="posts.pop()">delete a post</button>
   </div>
 </template>
 
 <script>
 import { computed, ref, reactive, watch, watchEffect } from 'vue'
 import PostList from '../components/PostList.vue'
+import getPosts from '../composables/getPosts'
 export default {
   name: 'Home',
   components: {PostList},
@@ -63,15 +71,21 @@ export default {
       stopEffect()
     }
 
-    const posts = [
-      {title: 'Journey to Europe', body: 'I started the journey to Europe', id: 1},
-      {title: 'So good for a Vietnamese', body: 'Here how I go to Europe', id: 2},
-    ]
+    // const posts = ref([
+    //   {title: 'Journey to Eurvcxcxcvxcvxcvccvxvxvxvxvxvxvxvcxvcxope', body: 'I started the jvxcvcxvxcvxvxvxcvxcvxvxcvxourney to Europe', id: 1},
+    //   {title: 'So good for a Vietnamese', body: 'Here how I go to Europe', id: 2},
+    // ])
+
+    const { posts, error, load } = getPosts()
+  
+    const showPosts = ref(true)
+
+    load()
     return { tinhLeOne, updateTinhLeOne, tinhLeTwo, 
       updateTinhLeTwo, nameTwo, names, search, matchingNames,
-      handleClick, posts
+      handleClick, posts, showPosts, error
     }
-    // let name = ref('hello')
+    // let name = ref('hello') 
     // let age = ref(32)
 
     // const handleClick = () => {
